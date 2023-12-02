@@ -1,5 +1,6 @@
 import socket
 import numpy as np
+import sklearn
 import pickle
 
 
@@ -8,11 +9,11 @@ def main():
     print("-------------------------------------------")
     print()
 
-    boredom_classifier = pickle.load('boredom_classifier.sav', 'rb')
+    boredom_classifier = pickle.load(open('../SKLEARN/boredom_classifier.sav', 'rb'))
     try:
         # Create a file to store data.
-        # DataFile = "immersiveDataChannels.csv";
-        # file = open("Datasets/"+DataFile, "wb")
+        DataFile = "modelTest1.csv";
+        file = open("Datasets/"+DataFile, "wb")
 
         # Define an IP endpoint
         destination_port = 1000
@@ -32,16 +33,16 @@ def main():
                 message_byte = receive_buffer_byte[:number_of_bytes_received]
                 message = message_byte.decode("ascii")
 
-                np_data = np.array(message.split(','))
-                result = boredom_classifier.predict(np_data)
-                print(result)
-                # file.write(message_byte)
-                print(message, end="")
+                np_data = np.array(message.split(',')).reshape(1, -1)
+                result = boredom_classifier.predict(np_data[:,8:56])[0]
+                
+                file.write([result,np_data])
+                # print(message, end="")
     except Exception as ex:
         print(f"Error: {ex}")
     finally:
         print("Press ENTER to terminate the application.")
-        # file.close()
+        file.close()
         input()
 
 if __name__ == "__main__":
