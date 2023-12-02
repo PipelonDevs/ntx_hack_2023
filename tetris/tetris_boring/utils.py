@@ -235,18 +235,18 @@ class Block:
             self.tiles[1] = Tile(self.tiles[0].x+tile_length,  self.tiles[0].y, self.color)
             self.tiles[2] = Tile(self.tiles[0].x, self.tiles[0].y-tile_length, self.color)
             self.tiles[3] = Tile(self.tiles[1].x, self.tiles[1].y-tile_length, self.color)
-        elif self.shape == "s_block":
-            self.tiles[1] = Tile(self.tiles[0].x-tile_length, self.tiles[0].y, self.color)
-            self.tiles[2] = Tile(self.tiles[0].x, self.tiles[0].y-tile_length, self.color)
-            self.tiles[3] = Tile(self.tiles[2].x+tile_length, self.tiles[2].y, self.color)
+        # elif self.shape == "s_block":
+        #     self.tiles[1] = Tile(self.tiles[0].x-tile_length, self.tiles[0].y, self.color)
+        #     self.tiles[2] = Tile(self.tiles[0].x, self.tiles[0].y-tile_length, self.color)
+        #     self.tiles[3] = Tile(self.tiles[2].x+tile_length, self.tiles[2].y, self.color)
         elif self.shape == "t_block":
             self.tiles[1] = Tile(self.tiles[0].x+tile_length,  self.tiles[0].y, self.color)
             self.tiles[2] = Tile(self.tiles[0].x-tile_length, self.tiles[0].y, self.color)
             self.tiles[3] = Tile(self.tiles[0].x, self.tiles[0].y-tile_length, self.color)
-        elif self.shape == "z_block":
-            self.tiles[1] = Tile(self.tiles[0].x+tile_length,  self.tiles[0].y, self.color)
-            self.tiles[2] = Tile(self.tiles[0].x, self.tiles[0].y-tile_length, self.color)
-            self.tiles[3] = Tile(self.tiles[2].x-tile_length, self.tiles[2].y, self.color)
+        # elif self.shape == "z_block":
+        #     self.tiles[1] = Tile(self.tiles[0].x+tile_length,  self.tiles[0].y, self.color)
+        #     self.tiles[2] = Tile(self.tiles[0].x, self.tiles[0].y-tile_length, self.color)
+        #     self.tiles[3] = Tile(self.tiles[2].x-tile_length, self.tiles[2].y, self.color)
         else:
             print("Error: wrong block name.")
             pygame.quit()
