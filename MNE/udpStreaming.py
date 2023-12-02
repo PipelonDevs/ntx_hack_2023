@@ -10,8 +10,8 @@ def main():
     print("-------------------------------------------")
     print()
      # Create a file to store data.
-    DataResultFile = "modelTest2_result.csv";
-    DataFile = "modelTest2.csv";  
+    DataResultFile = "modelTest3_result.csv";
+    DataFile = "modelTest3.csv";  
     file = open("../Datasets/"+DataFile, "wb")
     resultFile = open("../Datasets/"+DataResultFile,"w")
 
