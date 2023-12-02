@@ -26,7 +26,7 @@ tile_length = 33 # tile is a square
 blue = (0, 0, 255)
 white = (255, 255, 255) 
 black = (0, 0, 0)
-gray = (95, 95, 96) 
+gray = (30, 30, 30) 
 orange  = (249, 87, 0)  
 cobalt_blue = (3, 65, 174)
 green_apple  = (114, 203, 59)
@@ -103,7 +103,7 @@ class Button:
         return False
 
 class Tile:
-    def __init__(self, x, y, color = black):
+    def __init__(self, x, y, color = white):
         self.x = x
         self.y = y
         self.color = color
@@ -204,7 +204,7 @@ class PlayingField():
 
 
 class Block:
-    def __init__(self, shape:str, color = black):
+    def __init__(self, shape:str, color = white):
         self.shape = shape
         self.color = color
 
