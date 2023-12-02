@@ -14,10 +14,6 @@ def update_graphics(block, next_block, playing_field, player):
     #Displays Current score and time
     player.time_since_start = pygame.time.get_ticks() - player.start_time
     font = pygame.font.SysFont("comicsansms", 20)
-    rendered_text_time =  font.render("Time: " + str(player.time_since_start), 1, orange)
-    DISPLAY_SCREEN.blit(rendered_text_time, (playing_field_width+tile_length*2, playing_field_height-80))  
-    rendered_text_score = font.render("Score: " + str(player.score), 1, orange)
-    DISPLAY_SCREEN.blit(rendered_text_score, (playing_field_width+tile_length*2, playing_field_height-50))
     
     #Draw the small screen for the next block
     draw_small_screen(next_block)
