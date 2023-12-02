@@ -6,6 +6,10 @@ def main():
     print()
 
     try:
+        # Create a file to store data.
+        DataFile = "boringData.csv";
+        file = open("MNE/"+DataFile, "wb")
+
         # Define an IP endpoint
         destination_port = 1000
         ip = "127.0.0.1"
@@ -23,11 +27,13 @@ def main():
             if number_of_bytes_received > 0:
                 message_byte = receive_buffer_byte[:number_of_bytes_received]
                 message = message_byte.decode("ascii")
+                file.write(message_byte)
                 print(message, end="")
     except Exception as ex:
         print(f"Error: {ex}")
     finally:
         print("Press ENTER to terminate the application.")
+        file.close()
         input()
 
 if __name__ == "__main__":
