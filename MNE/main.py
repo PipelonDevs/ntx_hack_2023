@@ -8,7 +8,7 @@ def main():
     TestsignaleEnabled = False;
     FrameLength = 1;
     AcquisitionDurationInSeconds = 10;
-    DataFile = "data.csv";
+    DataFile = "boringData.csv";
     
     print("Unicorn Acquisition Example")
     print("---------------------------")
@@ -46,7 +46,7 @@ def main():
         print()
 
         # Create a file to store data.
-        file = open(DataFile, "wb")
+        file = open("MNE/"+DataFile, "wb")
 
         # Initialize acquisition members.
         #-------------------------------------------------------------------------------------
