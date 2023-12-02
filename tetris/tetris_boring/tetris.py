@@ -99,10 +99,10 @@ def start_game():
 
     
 
-    rand_index = random.randint(0, 6)
+    rand_index = random.randint(0, 3)
     block = Block(shapes[rand_index], block_colors[rand_index])
 
-    next_rand_index = random.randint(0, 6)
+    next_rand_index = random.randint(0, 3)
     next_block = Block(shapes[next_rand_index], block_colors[next_rand_index]) 
 
     playing_field = PlayingField()
