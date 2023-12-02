@@ -7,8 +7,8 @@ def main():
 
     try:
         # Create a file to store data.
-        DataFile = "boringData.csv";
-        file = open("MNE/"+DataFile, "wb")
+        DataFile = "immersiveDataChannels.csv";
+        file = open("Datasets/"+DataFile, "wb")
 
         # Define an IP endpoint
         destination_port = 1000

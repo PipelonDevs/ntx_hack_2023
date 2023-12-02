@@ -38,7 +38,7 @@ purple = (128, 0, 128)
 # colors of Tetris blocks
 block_colors = (cobalt_blue, blue, green_apple, purple, cyber_yellow, beer, ryb_red)
 # shapes of Tetris blocks
-shapes = ("i_block", "l_block", "j_block", "o_block", "s_block", "t_block", "z_block")
+shapes = ("i_block", "l_block", "j_block", "o_block")
 directions = ("vertical_1", "vertical_2", "horizontal_1", "horizontal_2")
 
 background_img = pygame.image.load("images/background_img.jpg")      
@@ -317,8 +317,8 @@ class Block:
         
         new_block = next_block
 
-        next_rand_index1 = random.randint(0, 6)
-        next_rand_index2 = random.randint(0, 6)
+        next_rand_index1 = random.randint(0, 3)
+        next_rand_index2 = random.randint(0, 3)
         new_next_block = Block(shapes[next_rand_index1], block_colors[next_rand_index2])
 
         clock.tick(2)
