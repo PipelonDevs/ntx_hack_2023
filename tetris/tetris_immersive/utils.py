@@ -291,7 +291,7 @@ class Block:
                 clock.tick(40)
                 self.block_is_falling( next_block, playing_field, player)
             else:                
-                clock.tick(5)
+                clock.tick(4.5)
             manage_events(self, next_block, playing_field, player)             
             update_graphics(self, next_block, playing_field, player)
 
