@@ -45,10 +45,10 @@ def update_graphics(block, next_block, playing_field, player):
     current_x_vertical_lines = off_set_x
     for i in range(19): 
         current_y_horizontal_lines += 33
-        pygame.draw.line(DISPLAY_SCREEN , white, (off_set_x, current_y_horizontal_lines), (playing_field_width+off_set_x-1, current_y_horizontal_lines)) # horizontal line top
+        pygame.draw.line(DISPLAY_SCREEN , gray, (off_set_x, current_y_horizontal_lines), (playing_field_width+off_set_x-1, current_y_horizontal_lines)) # horizontal line top
     for j in range(9): 
         current_x_vertical_lines += 33        
-        pygame.draw.line(DISPLAY_SCREEN , white, (current_x_vertical_lines-1, off_set_y), (current_x_vertical_lines-1, playing_field_height+off_set_y)) # horizontal line top
+        pygame.draw.line(DISPLAY_SCREEN , gray, (current_x_vertical_lines-1, off_set_y), (current_x_vertical_lines-1, playing_field_height+off_set_y)) # horizontal line top
 
     pygame.display.update()
 
