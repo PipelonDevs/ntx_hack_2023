@@ -51,7 +51,7 @@ def update_graphics(block, next_block, playing_field, player):
 def draw_small_screen(next_block):
     
     #Sets background
-    pygame.draw.rect(DISPLAY_SCREEN , black, (playing_field_width+tile_length*2, height/2-20, 6*tile_length, 6*tile_length) )
+    pygame.draw.rect(DISPLAY_SCREEN , white, (playing_field_width+tile_length*2, height/2-20, 6*tile_length, 6*tile_length) )
     
     #Sets borders
     pygame.draw.line(DISPLAY_SCREEN , blue, (playing_field_width+tile_length*2-2, height/2-20-2), ((6*tile_length)+(playing_field_width+tile_length*2), (height/2-20-2)), 3) # horizontal line top
