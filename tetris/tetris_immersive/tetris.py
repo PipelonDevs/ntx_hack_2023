@@ -100,6 +100,8 @@ def start_game():
     global best_score
     global longest_time
 
+    
+
     rand_index = random.randint(0, 6)
     block = Block(shapes[rand_index], block_colors[rand_index])
 

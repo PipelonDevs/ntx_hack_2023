@@ -32,11 +32,11 @@ def main():
             i+=1
 
         # Request device selection.
-        print()
-        deviceID = int(input("Select device by ID #"))
-        if deviceID < 0 or deviceID > len(deviceList):
-            raise IndexError('The selected device ID is not valid.')
-
+        # print()
+        # deviceID = int(input("Select device by ID #"))
+        # if deviceID < 0 or deviceID > len(deviceList):
+        #     raise IndexError('The selected device ID is not valid.')
+        deviceID=0
         # Open selected device.
         #-------------------------------------------------------------------------------------
         print()

@@ -2,6 +2,7 @@
 import pygame
 from utils import *
 
+
 def update_graphics(block, next_block, playing_field, player):
     
     #Sets black background and text
@@ -95,6 +96,8 @@ def is_game_over(playing_field, player):
 def start_game():    
     global best_score
     global longest_time
+
+    
 
     rand_index = random.randint(0, 6)
     block = Block(shapes[rand_index], block_colors[rand_index])
