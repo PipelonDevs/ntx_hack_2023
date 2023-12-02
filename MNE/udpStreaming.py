@@ -2,18 +2,24 @@ import socket
 import numpy as np
 import sklearn
 import pickle
-
+import warnings
+warnings.filterwarnings("ignore")
 
 def main():
     print("Unicorn Frequency Band UDP Receiver Example")
     print("-------------------------------------------")
     print()
+     # Create a file to store data.
+    DataResultFile = "modelTest1_result.csv";
+    DataFile = "modelTest1.csv";  
+    file = open("../Datasets/"+DataFile, "wb")
+    resultFile = open("../Datasets/"+DataResultFile,"w")
 
     boredom_classifier = pickle.load(open('../SKLEARN/boredom_classifier.sav', 'rb'))
     try:
-        # Create a file to store data.
-        DataFile = "modelTest1.csv";
-        file = open("Datasets/"+DataFile, "wb")
+             
+        
+
 
         # Define an IP endpoint
         destination_port = 1000
@@ -35,14 +41,15 @@ def main():
 
                 np_data = np.array(message.split(',')).reshape(1, -1)
                 result = boredom_classifier.predict(np_data[:,8:56])[0]
-                
-                file.write([result,np_data])
-                # print(message, end="")
+                print(result)
+                resultFile.write(str(result)+" ")
+                file.write(message_byte)
     except Exception as ex:
         print(f"Error: {ex}")
     finally:
         print("Press ENTER to terminate the application.")
         file.close()
+        resultFile.close()
         input()
 
 if __name__ == "__main__":
