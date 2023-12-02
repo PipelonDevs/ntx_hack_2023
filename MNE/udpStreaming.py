@@ -10,12 +10,12 @@ def main():
     print("-------------------------------------------")
     print()
      # Create a file to store data.
-    DataResultFile = "modelTest1_result.csv";
-    DataFile = "modelTest1.csv";  
+    DataResultFile = "modelTest2_result.csv";
+    DataFile = "modelTest2.csv";  
     file = open("../Datasets/"+DataFile, "wb")
     resultFile = open("../Datasets/"+DataResultFile,"w")
 
-    boredom_classifier = pickle.load(open('../SKLEARN/boredom_classifier.sav', 'rb'))
+    boredom_classifier = pickle.load(open('../SKLEARN/boredom_classifier002.sav', 'rb'))
     try:
              
         
