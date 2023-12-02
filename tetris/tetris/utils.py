@@ -11,6 +11,7 @@ clock = pygame.time.Clock()
 best_score = 0
 longest_time = 0
 global speed
+speed = 4.5
 
 width = 700
 height = 750
