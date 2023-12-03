@@ -1,4 +1,5 @@
 #Import libraries
+import asyncio
 import pygame
 import sys
 import random
@@ -48,16 +49,22 @@ instructions_img = pygame.image.load("images/instructions_img.jpg")
 icon_img = pygame.image.load("images/icon.png")
 pygame.display.set_icon(icon_img)
 
-def change_speed(up = True, high = 10, low = 2):
+
+
+
+
+async def change_speed(up = True, high = 10, low = 2):
     global speed
     if up:
-        speed += 0.5
+        speed += 0.35
         if speed > high:
             speed = high
     else:
-        speed -= 0.5
+        speed -= 0.35
         if speed < low:
             speed = low
+    print("New speed:"+ str(speed))
+    await asyncio.sleep(1)
 
 class Button:
     def __init__(self, button_color, button_hover_over_color, x, y, width, height, text_size,  text_color, text_hover_over_color = None, text_str=""):

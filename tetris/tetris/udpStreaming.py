@@ -1,3 +1,4 @@
+import asyncio
 import socket
 import numpy as np
 import sklearn
@@ -5,17 +6,17 @@ import pickle
 import warnings
 warnings.filterwarnings("ignore")
 
-def main():
+async def main():
     print("Unicorn Frequency Band UDP Receiver Example")
     print("-------------------------------------------")
     print()
      # Create a file to store data.
     DataResultFile = "modelTest3_result.csv";
     DataFile = "modelTest3.csv";  
-    file = open("../Datasets/"+DataFile, "wb")
-    resultFile = open("../Datasets/"+DataResultFile,"w")
+    file = open("../../Datasets/"+DataFile, "wb")
+    resultFile = open("../../Datasets/"+DataResultFile,"w")
 
-    boredom_classifier = pickle.load(open('../SKLEARN/boredom_classifier002.sav', 'rb'))
+    boredom_classifier = pickle.load(open('../../SKLEARN/boredom_classifier002.sav', 'rb'))
     try:
              
         
@@ -44,6 +45,8 @@ def main():
                 print(result)
                 resultFile.write(str(result)+" ")
                 file.write(message_byte)
+                yield result
+                
     except Exception as ex:
         print(f"Error: {ex}")
     finally:
@@ -52,5 +55,9 @@ def main():
         resultFile.close()
         input()
 
+async def run_main():
+    async for result in main():
+        print(result)
+
 if __name__ == "__main__":
-    main()
+    asyncio.run(run_main())

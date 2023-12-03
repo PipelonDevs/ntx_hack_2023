@@ -1,6 +1,16 @@
 #import libraries
+import asyncio
+from queue import Queue
+from utils import change_speed
+import threading
+import collections
 import pygame
 from utils import *
+from udpStreaming import main
+
+def run_once(loop):
+    loop.call_soon(loop.stop)
+    loop.run_forever()
 
 def update_graphics(block, next_block, playing_field, player):
     
@@ -111,8 +121,13 @@ def start_game():
     playing_field = PlayingField()
     start_time = pygame.time.get_ticks()
     player = Player(start_time)
-
+     
+    
     while True:
+
+  
+        
+    
         update_graphics(block, next_block, playing_field, player)
 
         (block, next_block, is_new) = block.get_new_block(next_block, playing_field, player)
@@ -142,6 +157,8 @@ def start_game():
 
         pygame.display.update()
         clock.tick(60)
+
+    loop.close()
 
 
 def manage_events(block, next_block, playing_field, player):
@@ -365,6 +382,62 @@ def instructions(player = None):
         clock.tick(60)
         pygame.display.update()
 
+result_queue = asyncio.Queue()
+
+resultsQueue = []
+
+changeTopTreshold = 80
+changeBottomTreshold = 40
+maxSpeed = 6
+minSpeed = 2
+dynamicChange = True
+
+async def changeFallingSpeed(result_queue):
+    i =0
+    for result in resultsQueue:
+        if result==1:
+            i+=1
+        if i>changeTopTreshold:
+            await change_speed(True,maxSpeed,minSpeed)
+        elif i<changeBottomTreshold:
+            await change_speed(False,maxSpeed,minSpeed)
+    
+    
+
+async def run_main():
+    # async for result in main():
+    #     result_queue.put(result)
+    
+    async for result in main():
+        result_queue.put(result)
+        resultsQueue.insert(0,result)
+        if len(resultsQueue)==100:
+            resultsQueue.pop()
+            resultsQueue.insert(0,result)
+
+            
+        if len(resultsQueue) >= 100 and dynamicChange:
+            await changeFallingSpeed(resultsQueue)
+            resultsQueue.clear()
+
+
+        print(result)
+
+def process_results():
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(run_main())
+
 if __name__ == "__main__":
-    introduction()
+    asyncio_thread = threading.Thread(target=process_results)
+
+    try:
+        asyncio_thread.start()
+        introduction()
+    except KeyboardInterrupt:
+        pass
+    finally:
+        pygame.quit()
+        result_queue.put(None)  # Signal the result thread to exit
+        asyncio_thread.join()
     
