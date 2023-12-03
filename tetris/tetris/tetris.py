@@ -386,21 +386,21 @@ result_queue = asyncio.Queue()
 
 resultsQueue = []
 
-changeTopTreshold = 80
-changeBottomTreshold = 40
+changeTopTreshold = 60
+changeBottomTreshold = 45
 maxSpeed = 6
 minSpeed = 2
 dynamicChange = True
 
-async def changeFallingSpeed(result_queue):
+def changeFallingSpeed(result_queue):
     i =0
     for result in resultsQueue:
         if result==1:
             i+=1
         if i>changeTopTreshold:
-            await change_speed(True,maxSpeed,minSpeed)
+            change_speed(False,maxSpeed,minSpeed)
         elif i<changeBottomTreshold:
-            await change_speed(False,maxSpeed,minSpeed)
+            change_speed(True,maxSpeed,minSpeed)
     
     
 
@@ -417,8 +417,10 @@ async def run_main():
 
             
         if len(resultsQueue) >= 100 and dynamicChange:
-            await changeFallingSpeed(resultsQueue)
+            
+            changeFallingSpeed(resultsQueue)
             resultsQueue.clear()
+            
 
 
         print(result)
